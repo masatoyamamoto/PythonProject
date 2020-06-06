@@ -57,11 +57,13 @@ for url in urls:
     # 物件リストを切り出し
     result = requests.get(url)
     c = result.content
-    soup = BeautifulSoup(c)
+    soup = BeautifulSoup(c, "lxml")
     summary = soup.find("div", {'id': 'js-bukkenList'})
 
-    # マンション名、住所、立地（最寄駅/徒歩~分）、築年数、建物高さが入っているcassetteitemを全て抜き出し
-    cassetteitems = summary.find_all("div", {'class': 'cassette'})
+    # マンション名、住所、立地（最寄駅/徒歩~分）、築年数、建物高さが入っているを全て抜き出し
+    dataSet = summary.find_all(class_ = "dottable-fix")
+    print(summary.prettify())
+    print(dataSet)
 
 
 
