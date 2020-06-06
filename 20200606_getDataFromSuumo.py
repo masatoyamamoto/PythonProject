@@ -75,7 +75,7 @@ def getSuumoDataFromAllPages(url):
 
         SuumoData = SuumoData.append(kekka, ignore_index=True)
         print("...")
-        print(str(i) + "ページ目が終わりました")
+        print(str(i+1) + "ページ目が終わりました")
 
         time.sleep(10)
 
