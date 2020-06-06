@@ -30,7 +30,10 @@ def getSuumo(url):
                 bukken_result.append(j.text.replace("\n", ""))
 
     # numpy化して折り返す
-    np_result = np.array(bukken_result).reshape(int(len(bukken_result) / 8), 8)
+    try:
+        np_result = np.array(bukken_result).reshape(int(len(bukken_result) / 8), 8)
+    except:
+        np_result = np.array(np.repeat("-", 8).reshape(1, 8))
 
     # データフレームに変換
     column = ["name", "price", "location", "station", "size", "floor", "terrace", "age"]
@@ -72,6 +75,7 @@ def getSuumoDataFromAllPages(url):
 
         SuumoData = SuumoData.append(kekka, ignore_index=True)
         print("...")
+        print(str(i) + "ページ目が終わりました")
 
         time.sleep(10)
 
