@@ -16,3 +16,10 @@ df_split_1["time"] = df_split_1["time"].str.replace("分", "")
 # 切り分けたので元データを削除
 df.drop(['station'], axis=1, inplace=True)
 
+# 広さのm2等を削除する
+df["size"] = df["size"].replace("m2(.*)", "", regex=True)
+df["terrace"] = df["terrace"].replace("m2(.*)", "", regex=True)
+
+# 値段を扱いやすくする。億円以上のものは億円部分を切り離して、*10,000して足したい(20200614)。
+df_split_1 = df["price"].str.split("億", expand=True)
+
