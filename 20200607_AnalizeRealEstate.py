@@ -43,8 +43,8 @@ df_split_1 = df["location"].str.split("区", expand=True)
 df_split_1.columns = ["ku", "cho-son"]
 df = pd.concat([df, df_split_1], axis=1)
 df.drop(["location"], axis=1, inplace=True)
+df["ku"] = df["ku"].replace("東京都", "", regex=True)
 
-# 分析の記録
+# 前処理の記録
 df.to_csv("sumoAnalyze.csv", encoding="utf-16")
 
-# 本格的な分析
