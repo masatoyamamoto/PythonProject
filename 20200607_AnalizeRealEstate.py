@@ -22,4 +22,3 @@ df["terrace"] = df["terrace"].replace("m2(.*)", "", regex=True)
 
 # 値段を扱いやすくする。億円以上のものは億円部分を切り離して、*10,000して足したい(20200614)。
 df_split_1 = df["price"].str.split("億", expand=True)
-
