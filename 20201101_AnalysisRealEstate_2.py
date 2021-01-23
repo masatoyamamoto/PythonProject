@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 # 分析
 df = pd.read_csv("sumoAnalyze.csv",  encoding="utf-16")
+df.drop(['Unnamed: 0'], axis=1, inplace=True)
 summary = df.describe()
-ku_group = df.groupby("ku")
-count_by_ku = ku_group.size()
-plt.bar(count_by_ku.index,count_by_ku)
+
