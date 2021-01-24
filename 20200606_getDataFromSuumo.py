@@ -31,7 +31,6 @@ def get_suumo(url_to_suumo):
     column = ["name", "price", "location", "station", "size", "floor", "terrace", "age"]
     df_suumo_data: DataFrame = pd.DataFrame(np_result, columns=column)
 
-    df_suumo_data.to_csv("./Data/suumoData.csv", index=False, encoding="utf-8")
     return df_suumo_data
 
 
