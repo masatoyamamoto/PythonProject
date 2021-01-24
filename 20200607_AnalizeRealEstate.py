@@ -4,7 +4,7 @@ import numpy as np
 # データ読み込み
 df = pd.read_csv("suumoData.csv", sep="\t", encoding="utf-16")
 # 不要な列を削除
-df.drop(['Unnamed: 0'], axis=1, inplace=True)
+df.drop('Unnamed: 0', axis=1, inplace=True)
 
 # 路線、駅名、徒歩時間を切り分ける
 df_split_1 = df["station"].str.split("歩", expand=True)
