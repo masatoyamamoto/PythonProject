@@ -1,0 +1,21 @@
+Index: 20201101_AnalysisRealEstate_2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\r\nimport numpy as np\r\nimport matplotlib.pyplot as plt\r\n\r\n# 分析\r\ndf = pd.read_csv(\"sumoAnalyze.csv\",  encoding=\"utf-16\")\r\nsummary = df.describe()\r\nku_group = df.groupby(\"ku\")\r\ncount_by_ku = ku_group.size()\r\nplt.bar(count_by_ku.index,count_by_ku)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/20201101_AnalysisRealEstate_2.py b/20201101_AnalysisRealEstate_2.py
+--- a/20201101_AnalysisRealEstate_2.py	
++++ b/20201101_AnalysisRealEstate_2.py	
+@@ -3,8 +3,8 @@
+ import matplotlib.pyplot as plt
+ 
+ # 分析
+-df = pd.read_csv("sumoAnalyze.csv",  encoding="utf-16")
++df = pd.read_csv("sumoAnalyze.csv", encoding="utf-16")
+ summary = df.describe()
+ ku_group = df.groupby("ku")
+ count_by_ku = ku_group.size()
+-plt.bar(count_by_ku.index,count_by_ku)
++plt.bar(count_by_ku.index, count_by_ku)
