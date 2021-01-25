@@ -1,9 +1,9 @@
 import pandas as pd
+import datetime as dt
 import numpy as np
 
-# データ読み込み
-df = pd.read_csv("suumoData.csv",  encoding="utf-16")
-df.drop(df.columns[0],axis=1,inplace=True)
+
+df = pd.read_csv("./Data/suumoData.csv",  encoding="utf-8")  # データ読み込み
 
 # 路線、駅名、徒歩時間を切り分ける
 df_split_1 = df["station"].str.split("歩", expand=True)
@@ -19,6 +19,5 @@ df.drop(['station'], axis=1, inplace=True)
 df["size"] = df["size"].replace("m2(.*)", "", regex=True)
 df["terrace"] = df["terrace"].replace("m2(.*)", "", regex=True)
 
-# 値段を扱いやすくする。億円以上のものは億円部分を切り離して、*10,000して足したい(20200614)。
-df_split_1 = df["price"].str.split("億", expand=True)
+
 
