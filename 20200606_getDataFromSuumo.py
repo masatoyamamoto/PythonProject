@@ -28,7 +28,7 @@ def get_suumo(url_to_suumo):
     except Exception:
         np_result = np.array(np.repeat("-", 8).reshape(1, 8))
     # データフレームに変換
-    column = ["name", "price", "location", "station", "size", "floor", "terrace", "age"]
+    column = ["name", "price", "location", "station", "size", "floor", "terrace", "construction"]
     df_suumo_data: DataFrame = pd.DataFrame(np_result, columns=column)
 
     return df_suumo_data
