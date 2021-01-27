@@ -70,7 +70,7 @@ def get_suumo_data_from_all_pages(url_in_get_data):
 
         time.sleep(10)
 
-    suumo_data.to_csv("./Data/suumoData.csv", index=False, encoding="utf-8")
+    return suumo_data
 
 
 # 全ての地域を選択したURL 800ページくらいあるのでめっちゃ時間がかかる。
@@ -81,4 +81,4 @@ url = "https://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ta=13&jspIdF
       "&sc=13219&sc=13220&sc=13221&sc=13222&sc=13223&sc=13224&sc=13225&sc=13227&sc=13228&sc=13229&kb=1&kt=9999999&mb" \
       "=0&mt=9999999&ekTjCd=&ekTjNm=&tj=0&cnb=0&cn=9999999&srch_navi=1 "
 
-get_suumo_data_from_all_pages(url)
+temp = get_suumo_data_from_all_pages(url)

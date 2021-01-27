@@ -1,6 +1,5 @@
 import pandas as pd
 import datetime as dt
-import numpy as np
 
 df = pd.read_csv("./Data/suumoData.csv", encoding="utf-8")  # データ読み込み
 
@@ -38,6 +37,18 @@ temp = pd.DataFrame(pd.to_datetime(dt.date.today()) - df["age"])
 temp = temp.rename(columns={"age": "age_1"})
 df = pd.concat((df, temp), axis=1)
 
+# floorの修正
+temp = pd.Series(df["floor"]).str.replace("(.*ワンルーム)", "1")
+rldks = pd.DataFrame([
+    temp.str.extract(r"(\d\d*)")[0],
+    temp.str.count("L"),
+    temp.str.count("D"),
+    temp.str.count("K"),
+    temp.str.extract(r"(\+.*S)")[0].fillna("0").str.extract(r"(\d+)").fillna(1)[0]],
+    index=["room", "Living", "Dining", "Kitchen", "Service"]).astype(int).T
+temp2 = pd.DataFrame({"No.ofRooms": rldks.sum(axis=1)})
+df = pd.concat((df, rldks,temp2), axis=1)
+
 # 出力
-df.to_csv("test.csv", encoding="utf-8")
-# TODO: floorを分析可能な形に変更
+df_result: pd = df[["name", "size", "terrace", "age_1","ku", "room", "Living", "Dining", "Kitchen", "Service", "No.ofRooms", "price"]]
+df_result.to_csv("Data.csv", encoding="utf-8")
