@@ -47,8 +47,10 @@ rldks = pd.DataFrame([
     temp.str.extract(r"(\+.*S)")[0].fillna("0").str.extract(r"(\d+)").fillna(1)[0]],
     index=["room", "Living", "Dining", "Kitchen", "Service"]).astype(int).T
 temp2 = pd.DataFrame({"No.ofRooms": rldks.sum(axis=1)})
-df = pd.concat((df, rldks,temp2), axis=1)
+
+df = pd.concat((df, rldks, temp2), axis=1)
 
 # 出力
-df_result: pd = df[["name", "size", "terrace", "age_1","ku", "room", "Living", "Dining", "Kitchen", "Service", "No.ofRooms", "price"]]
+df_result: pd = df[
+    ["name", "size", "terrace", "age_1", "ku", "room", "Living", "Dining", "Kitchen", "Service", "No.ofRooms", "price"]]
 df_result.to_csv("Data.csv", encoding="utf-8")
