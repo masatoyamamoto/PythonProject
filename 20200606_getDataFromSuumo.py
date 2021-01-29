@@ -103,16 +103,14 @@ def data_amend(df: DataFrame):
     df["price"] = df_split_1 + df_split_2  # 万円の数字に変換
 
     # 建築日を使えるデータにする
-    # df["construction"] = pd.to_datetime(df["construction"] + "1日", format="%Y年%m月%d日")
-    # temp = pd.to_datetime(dt.date.today()) - df["construction"]
-    df["age"] = pd.to_datetime(df["age"] + "1日", format="%Y年%m月%d日")
-    temp_1 = pd.DataFrame(pd.to_datetime(datetime.date.today()) - df["age"])
-    temp_1 = temp_1.rename(columns={"age": "age_1"})
+    df["construction"] = pd.to_datetime(df["construction"] + "1日", format="%Y年%m月%d日")
+    temp_1 = pd.to_datetime(dt.date.today()) - df["construction"]
+    temp_1 = temp_1.rename(columns={"construction": "age"})
     df = pd.concat((df, temp_1), axis=1)
 
     # floorの修正
     temp_1 = pd.Series(df["floor"]).str.replace("(.*ワンルーム)", "1")
-    rldks = pd.DataFrame([
+    rldks: DataFrame = pd.DataFrame([
         temp_1.str.extract(r"(\d\d*)")[0],
         temp_1.str.count("L"),
         temp_1.str.count("D"),
@@ -141,5 +139,4 @@ url = "https://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ta=13&jspIdF
 
 temp = get_suumo_data_from_all_pages(url)
 temp = data_amend(temp)
-
 temp.to_csv("./Data/Suumo_" + datetime.date.today().strftime("%Y-%M-%D") + ".csv")
