@@ -139,4 +139,4 @@ url = "https://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ta=13&jspIdF
 
 temp = get_suumo_data_from_all_pages(url)
 temp = data_amend(temp)
-temp.to_csv("./Data/Suumo_" + datetime.date.today().strftime("%Y-%M-%D") + ".csv")
+temp.to_csv("./Data/Suumo_" + datetime.date.today().strftime("%Y-%M-%D") + ".csv", index=False)
