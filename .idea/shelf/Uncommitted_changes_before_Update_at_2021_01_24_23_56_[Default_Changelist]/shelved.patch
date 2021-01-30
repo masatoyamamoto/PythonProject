@@ -1,0 +1,55 @@
+Index: 20201101_AnalysisRealEstate_2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# 分析\ndf = pd.read_csv(\"sumoAnalyze.csv\",  encoding=\"utf-16\")\nsummary = df.describe()\nku_group = df.groupby(\"ku\")\ncount_by_ku = ku_group.size()\nplt.bar(count_by_ku.index,count_by_ku)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/20201101_AnalysisRealEstate_2.py b/20201101_AnalysisRealEstate_2.py
+--- a/20201101_AnalysisRealEstate_2.py	(revision e9f697b6c85af20368c177f0bc07a946bedc8eef)
++++ b/20201101_AnalysisRealEstate_2.py	(date 1611496185600)
+@@ -1,6 +1,7 @@
+ import pandas as pd
+ import numpy as np
+ import matplotlib.pyplot as plt
++plt.rc('font', family='Noto Sans CJK JP')
+ 
+ # 分析
+ df = pd.read_csv("sumoAnalyze.csv",  encoding="utf-16")
+Index: .idea/PythonProject.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\">\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\n      <excludeFolder url=\"file://$MODULE_DIR$/venv2\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.7 (base)\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n    <orderEntry type=\"library\" name=\"R Skeletons\" level=\"application\" />\n    <orderEntry type=\"library\" name=\"R User Library\" level=\"project\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/PythonProject.iml b/.idea/PythonProject.iml
+--- a/.idea/PythonProject.iml	(revision e9f697b6c85af20368c177f0bc07a946bedc8eef)
++++ b/.idea/PythonProject.iml	(date 1611496228176)
+@@ -5,7 +5,7 @@
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+       <excludeFolder url="file://$MODULE_DIR$/venv2" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.7 (base)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.7 (PythonProject)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" name="R Skeletons" level="application" />
+     <orderEntry type="library" name="R User Library" level="project" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.7 (base)\" project-jdk-type=\"Python SDK\" />\n  <component name=\"PyCharmProfessionalAdvertiser\">\n    <option name=\"shown\" value=\"true\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision e9f697b6c85af20368c177f0bc07a946bedc8eef)
++++ b/.idea/misc.xml	(date 1611496228220)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (base)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (PythonProject)" project-jdk-type="Python SDK" />
+   <component name="PyCharmProfessionalAdvertiser">
+     <option name="shown" value="true" />
+   </component>
