@@ -74,7 +74,7 @@ def get_suumo_data_from_all_pages(url_in_get_data: str):
 
 
 def data_amend(df: DataFrame):
-    # df = pd.read_csv("./Data/suumoData.csv", encoding="utf-8")  # データ読み込み。debugするときはこれをつかう
+    df = pd.read_csv("./Data/suumoData.csv", encoding="utf-8")  # データ読み込み。debugするときはこれをつかう
 
     # 路線、駅名、徒歩時間を切り分ける
     df_split_1 = df["station"].str.split("歩", expand=True)
@@ -106,7 +106,7 @@ def data_amend(df: DataFrame):
     # 建築日を使えるデータにする
     df["construction"] = pd.to_datetime(df["construction"] + "1日", format="%Y年%m月%d日")
     temp_1 = pd.to_datetime(dt.date.today()) - df["construction"]
-    temp_1 = temp_1.rename(columns={"construction": "age"})
+    temp_1 = temp_1.rename("age")
     df = pd.concat((df, temp_1), axis=1)
 
     # floorの修正
@@ -121,7 +121,6 @@ def data_amend(df: DataFrame):
     temp2 = pd.DataFrame({"No.ofRooms": rldks.sum(axis=1)})
 
     df = pd.concat((df, rldks, temp2), axis=1)
-
 
     # 出力
     return df
