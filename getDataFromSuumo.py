@@ -3,7 +3,7 @@ import requests
 import numpy as np
 import time
 import pandas as pd
-import datetime
+import datetime as dt
 from pandas import DataFrame
 
 
@@ -122,11 +122,7 @@ def data_amend(df: DataFrame):
     df = pd.concat((df, rldks, temp2), axis=1)
 
     # 出力
-    df_result: pd = df[
-        ["name", "size", "terrace", "age_1", "ku", "room", "Living", "Dining", "Kitchen", "Service", "No.ofRooms",
-         "price"]]
-    # df_result.to_csv("Data.csv", encoding="utf-8")
-    return df_result
+    return df
 
 
 # 全ての地域を選択したURL 800ページくらいあるのでめっちゃ時間がかかる。
@@ -139,4 +135,4 @@ url = "https://suumo.jp/jj/bukken/ichiran/JJ010FJ001/?ar=030&bs=011&ta=13&jspIdF
 
 temp = get_suumo_data_from_all_pages(url)
 temp = data_amend(temp)
-temp.to_csv("./Data/Suumo_" + datetime.date.today().strftime("%Y-%M-%D") + ".csv", index=False)
+temp.to_csv("./Data/Suumo_" + dt.date.today().strftime("%Y-%M-%D") + ".csv", index=False)
