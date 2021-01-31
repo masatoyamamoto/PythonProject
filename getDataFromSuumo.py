@@ -74,7 +74,7 @@ def get_suumo_data_from_all_pages(url_in_get_data: str):
 
 
 def data_amend(df: DataFrame):
-    # df = pd.read_csv("./Data/suumoData.csv", encoding="utf-8")  # データ読み込み
+    # df = pd.read_csv("./Data/suumoData.csv", encoding="utf-8")  # データ読み込み。debugするときはこれをつかう
 
     # 路線、駅名、徒歩時間を切り分ける
     df_split_1 = df["station"].str.split("歩", expand=True)
@@ -88,6 +88,7 @@ def data_amend(df: DataFrame):
     df = df[df["location"].str.contains("区")]
     temp_1 = df["location"].str.replace("東京都", "").str.split("区", expand=True)
     temp_1.columns = ["ku", "address"]
+    temp_1 = temp_1["address"].str.extract(r"([^\d]*)")
     df = pd.concat((df, temp_1), axis=1)
 
     # 広さのm2以降を削除する
@@ -120,6 +121,7 @@ def data_amend(df: DataFrame):
     temp2 = pd.DataFrame({"No.ofRooms": rldks.sum(axis=1)})
 
     df = pd.concat((df, rldks, temp2), axis=1)
+
 
     # 出力
     return df
